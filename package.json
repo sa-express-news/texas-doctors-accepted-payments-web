@@ -1,0 +1,48 @@
+{
+  "name": "texas-doctors-accepted-payments-web",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sa-express-news/texas-doctors-accepted-payments-web.git"
+  },
+  "keywords": [
+    "texas",
+    "doctors",
+    "payments"
+  ],
+  "author": "Luke Whyte, Rilyn Eischens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sa-express-news/texas-doctors-accepted-payments-web/issues"
+  },
+  "homepage": "https://github.com/sa-express-news/texas-doctors-accepted-payments-web#readme",
+  "devDependencies": {
+    "babel-minify-webpack-plugin": "^0.3.0",
+    "clean-webpack-plugin": "^0.1.18",
+    "css-loader": "^0.28.9",
+    "express-news-styleguide": "^1.0.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "handlebars-loader": "^1.6.0",
+    "html-webpack-plugin": "^2.30.1",
+    "mock-socket": "^7.1.0",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@types/socket.io-client": "^1.4.32",
+    "babel-loader": "^8.0.0-beta.0",
+    "handlebars": "^4.0.11"
+  }
+}
