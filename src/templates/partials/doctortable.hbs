@@ -1,0 +1,40 @@
+<div class="table-wrapper">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Doctor</th>
+                <th>Location</th>
+                <th>Zip</th>
+            </tr>
+        </thead>
+    <tbody>
+        {{#each doctors}}
+            <tr>
+                <td class="link" onclick="doctorPayments.getDoctorPayments({{physician_profile_id}})">{{capitalize-first-letter name}}</td>
+                <td>{{capitalize-first-letter city}}</td>
+                <td>{{ zip }}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+    </table>
+    <div class="pagination">
+        <div class="total">Displaying {{ meta.start }} through {{ meta.stop }} of {{ meta.len }} doctors matching search.</div>
+        <ul>
+            {{#paginate pagination type="first"}}
+                <li {{#if disabled}}class="disabled"{{/if}} onclick="doctorPayments.toggleDoctorPages({{n}})">First</li>
+            {{/paginate}}
+            {{#paginate pagination type="previous"}}
+                <li {{#if disabled}}class="disabled"{{/if}} onclick="doctorPayments.toggleDoctorPages({{n}})">Prev</li>
+            {{/paginate}}
+            {{#paginate pagination type="middle" limit=limit}}
+                <li {{#if active}}class="active"{{/if}} onclick="doctorPayments.toggleDoctorPages({{n}})">{{n}}</li>
+            {{/paginate}}
+            {{#paginate pagination type="next"}}
+                <li {{#if disabled}}class="disabled"{{/if}} onclick="doctorPayments.toggleDoctorPages({{n}})">Next</li>
+            {{/paginate}}
+            {{#paginate pagination type="last"}}
+                <li {{#if disabled}}class="disabled"{{/if}} onclick="doctorPayments.toggleDoctorPages({{n}})">Last</li>
+            {{/paginate}}
+        </ul>
+    </div>
+</div>
