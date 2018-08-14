@@ -1,5 +1,11 @@
 <main>
+    {{#if loading}}
+        {{> dataloading}}
+    {{/if}}
     {{#if doctors }}
         {{> doctortable}}
+    {{/if}}
+    {{#if payments }}
+        {{> docsummary }}
     {{/if}}
 </main>

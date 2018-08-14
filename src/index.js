@@ -15,24 +15,23 @@ class DoctorPayments {
         this.input          = config.input;
         this.button         = config.button;
         this.Paginate       = config.Paginate;
-        this.parent         = this.getParent(config.wcmWrapper);
+        this.parent         = config.parent;
         this.main           = this.getMain();
 
         this.doctors    = {};
         this.payments   = {};
-        this.state      = {};
+        this.state      = {
+            loading: false,
+        };
 
-        this.renderDoctors = this.renderDoctors.bind(this);
+        this.renderDoctors  = this.renderDoctors.bind(this);
+        this.renderPayments = this.renderPayments.bind(this);
 
         this.bindToParent();
         this.bindInputSubmit();
         this.bindButtonSubmit();
 
         window.onscroll = this.setStickyNav(config.formGroup);
-    }
-
-    getParent(wcmWrapper) {
-        return wcmWrapper ? wcmWrapper : document.body;
     }
 
     getMain() {
@@ -45,10 +44,16 @@ class DoctorPayments {
         this.parent.appendChild(this.main);
     }
 
+    toggleLoading(bool) {
+        this.state = { loading: bool };
+        this.render(this.main, this.state);
+    }
+
     bindInputSubmit() {
         this.input.addEventListener('keyup', event => {
             event.preventDefault();
             if (event.keyCode === 13) {
+                this.toggleLoading(true);
                 this.getDoctors(this.input.value).then(this.renderDoctors);
             }
         });
@@ -57,6 +62,7 @@ class DoctorPayments {
     bindButtonSubmit() {
         this.button.addEventListener('click', event => {
             event.preventDefault();
+            this.toggleLoading(true);
             this.getDoctors(this.input.value).then(this.renderDoctors);
         });
     }
@@ -74,11 +80,15 @@ class DoctorPayments {
     }
 
     getDoctorPayments(docID) {
+        this.toggleLoading(true);
         this.getPayments(docID).then(this.renderPayments);
     }
 
     renderPayments(payments) {
-        
+        this.doctors = {};
+        this.payments = payments;
+        this.state = Object.assign({}, this.payments);
+        this.render(this.main, this.state);
     }
 
     setStickyNav(formGroup) {
@@ -94,8 +104,7 @@ class DoctorPayments {
 }
 
 window.doctorPayments = new DoctorPayments({
-    // If we're in the WCM, we want to append the content to the '.subsection_wrap' div
-    wcmWrapper: document.querySelector('div.subsection_wrap'),
+    parent: document.querySelector('div.contentWrapper'),
     formGroup: document.querySelector('div.form-group'),
     input: document.querySelector('input.search'),
     button: document.querySelector('button.search'),

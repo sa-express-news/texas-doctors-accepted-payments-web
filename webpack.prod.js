@@ -53,6 +53,7 @@ module.exports = merge(common, {
                     helperDirs: [
                         path.join(__dirname, 'src/templates', 'helpers')
                     ],
+                    inlineRequires: '\/images\/',
                 },
             },
             {

@@ -10,8 +10,8 @@
     <tbody>
         {{#each doctors}}
             <tr>
-                <td class="link" onclick="doctorPayments.getDoctorPayments({{physician_profile_id}})">{{capitalize-first-letter name}}</td>
-                <td>{{capitalize-first-letter city}}</td>
+                <td class="link" onclick="doctorPayments.getDoctorPayments({{physician_profile_id}})">{{ name }}</td>
+                <td>{{ city }}</td>
                 <td>{{ zip }}</td>
             </tr>
         {{/each}}
